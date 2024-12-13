@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Frankcryption",
+    "version": "1.0",
+    "icons": {
+        "16": "photo.png",
+        "48": "photo.png",
+        "128": "photo.png"
+    },
+    "description": "A simple tool to encode and decode Base64, ROT13, and Caesar cipher strings.",
+    "action": {
+        "default_icon": {
+            "16": "photo.png",
+            "48": "photo.png",
+            "128": "photo.png"
+        },
+        "default_popup": "popup.html"
+    },
+    "permissions": []
+}

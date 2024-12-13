@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frankcryption  Tool</title>
+  <link rel="stylesheet" href="./master.css">
+</head>
+<body>
+  <header class="head">
+    <h3>Frankcryption </h3>
+  </header>
+  
+  <div class="body">
+    <textarea id="input" placeholder="Enter your message..."></textarea>
+  
+  <select id="encryption-type">
+    <option value="Base64">Base64</option>
+    <option value="ROT13">ROT 13</option>
+    <option value="Caesar">Caesar Cipher</option>
+  </select>
+  
+  <button id="encode">Encode</button>
+  <button id="decode">Decode</button>
+  <textarea id="output" placeholder="Output..." readonly></textarea>
+  <button id="copyButton" style="display:none;">Copy to Clipboard</button>
+</div>
+  
+  <!-- <script src="https://tryhackme.com/badge/2516640"></script> -->
+  
+  <img src="https://tryhackme-badges.s3.amazonaws.com/MohamedElkafrawy.png" alt="Your Image Badge" />
+
+  
+  <script src="popup.js"></script>
+</body>
+</html>
