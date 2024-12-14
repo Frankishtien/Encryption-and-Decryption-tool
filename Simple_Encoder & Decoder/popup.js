@@ -19,12 +19,13 @@ function rot13(input) {
 
 // Function for Caesar Cipher
 function caesarCipher(input, shift) {
+  const adjustedShift = (shift % 26 + 26) % 26; // Normalize the shift
   return input.split('').map(function(char) {
     const code = char.charCodeAt(0);
     if (code >= 65 && code <= 90) { // A-Z
-      return String.fromCharCode(((code - 65 + shift) % 26) + 65);
+      return String.fromCharCode(((code - 65 + adjustedShift) % 26) + 65);
     } else if (code >= 97 && code <= 122) { // a-z
-      return String.fromCharCode(((code - 97 + shift) % 26) + 97);
+      return String.fromCharCode(((code - 97 + adjustedShift) % 26) + 97);
     }
     return char; // Return the character as is if it's not a letter
   }).join('');
@@ -32,8 +33,12 @@ function caesarCipher(input, shift) {
 
 // Add event listeners to buttons
 document.getElementById('encode').addEventListener('click', function() {
-  const input = document.getElementById('input').value;
-  const selectedType = document.getElementById('encryption-type').value;
+  const input = document.getElementById('input').value.trim();
+  const selectedType = document.getElementById('encoding-type').value;
+  if (!input) {
+    alert('Please enter a message to encode.');
+    return;
+  }
   let output = '';
 
   switch (selectedType) {
@@ -53,13 +58,22 @@ document.getElementById('encode').addEventListener('click', function() {
 });
 
 document.getElementById('decode').addEventListener('click', function() {
-  const input = document.getElementById('input').value;
-  const selectedType = document.getElementById('encryption-type').value;
+  const input = document.getElementById('input').value.trim();
+  const selectedType = document.getElementById('encoding-type').value;
+  if (!input) {
+    alert('Please enter a message to decode.');
+    return;
+  }
   let output = '';
 
   switch (selectedType) {
     case 'Base64':
-      output = decodeBase64(input);
+      try {
+        output = decodeBase64(input);
+      } catch (e) {
+        alert('Invalid Base64 input!');
+        return;
+      }
       break;
     case 'ROT13':
       output = rot13(input); // ROT13 decode is the same as encode
@@ -76,3 +90,48 @@ document.getElementById('decode').addEventListener('click', function() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById('copyButton').addEventListener('click', function () {
+  const textarea = document.getElementById('output');
+  const button = this; // Refers to the button itself
+  const originalText = button.textContent;
+
+  // Select the text
+  textarea.select();
+  textarea.setSelectionRange(0, 99999); // For mobile devices
+
+  // Copy the text
+  navigator.clipboard.writeText(textarea.value)
+      .then(() => {
+          // Change button text to "Copied!"
+          button.textContent = 'Copied!';
+          // Reset button text after 2 seconds
+          setTimeout(() => {
+              button.textContent = originalText;
+          }, 2000);
+      })
+      .catch(err => {
+          console.error('Failed to copy text: ', err);
+      });
+});
