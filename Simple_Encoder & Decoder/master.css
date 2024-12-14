@@ -123,7 +123,9 @@ h3{
 
 
 
-
+.result{
+    position: relative;
+}
 
 
   #output {
@@ -142,7 +144,7 @@ h3{
     width: 15%;
     position: absolute;
     left: 250px;
-    top: 260px;
+    top: 6px;
     /* display: none; */
     transition: background-color 0.3s;
 }
